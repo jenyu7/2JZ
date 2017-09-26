@@ -4,12 +4,16 @@
   <head> 
     <title> </title> 
   </head> 
-  <body> 
-    {% for key, value in collection %}
-    <tr> 
-      <th> {{ key }} </th> 
-      <td> {{ value }} </td> 
-    </tr> 
-    {% endfor %}
+  <body>
+    <center>
+    <table>
+      {% for i in collection %}
+      <tr> 
+	<th> {{ i }} </th> 
+	<td> {{ collection[i] }} </td> 
+      </tr> 
+      {% endfor %}
+    </table>
+    </center>
   </body> 
 </html> 

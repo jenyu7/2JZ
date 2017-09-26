@@ -2,7 +2,6 @@ from flask import Flask, render_template
 import random
 app = Flask(__name__)
 
-@app.route("/")
 def read_occupations():
     # Read the file
     # 'U' is the universal newline (in case the csv file was made in Windows)
