@@ -39,7 +39,7 @@ coll = read_occupations()
 
 @app.route("/occupations")
 def display_template():
-    return render_template('temp1.html', collection = coll)
+    return render_template('temp1.html', collection = coll, rand = random_profession(coll))
 
 if __name__ == "__main__":
     app.debug = True
