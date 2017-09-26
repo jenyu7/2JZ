@@ -5,9 +5,11 @@
     <title> </title> 
   </head> 
   <body> 
-    {% for item in collection %}
-    {{ item }}
-    <br> 
+    {% for key, value in collection %}
+    <tr> 
+      <th> {{ key }} </th> 
+      <td> {{ value }} </td> 
+    </tr> 
     {% endfor %}
   </body> 
 </html> 
