@@ -2,8 +2,7 @@ from flask import Flask, render_template
 import random
 app = Flask(__name__)
 
-@app.route("/occupations")
-
+@app.route("/")
 def read_occupations():
     # Read the file
     # 'U' is the universal newline (in case the csv file was made in Windows)
@@ -37,3 +36,12 @@ def random_profession(professions):
   #returns -1 if something went wrong
   return -1;
 
+coll = read_occupations()
+
+@app.route("/occupations")
+def display_template():
+    return render_template('temp1.html', collection = coll)
+
+if __name__ == "__main__":
+    app.debug = True
+    app.run()
