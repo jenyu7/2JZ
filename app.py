@@ -18,10 +18,11 @@ def read_occupations():
             # Find the second quote
             end_quote = line[1:].find('"') + 1
             # Define the list accordingly
-            fields = [line[1:end_quote], line[end_quote+2:]]
+            temp = line[end_quote+2:].split(',') #contains the percentage and link
+            fields = [line[1:end_quote], temp[0], temp[1]]
         else:
             fields = line.split(',')
-        csv_dict[fields[0]] = float(fields[1])
+        csv_dict[fields[0]] = [float(fields[1]), fields[2]]
     return csv_dict
 
 
@@ -29,17 +30,17 @@ def random_profession(professions):
   num = random.randint(1,998)
   for element in professions:
     #We keep subtracting the percentages until num becomes a negative number: we know that it falls within the range of the specific occupation when its negative
-    num -= professions[element] * 10
+    num -= professions[element][0] * 10
     if num < 0:
       return element
   #returns -1 if something went wrong
   return -1;
 
 coll = read_occupations()
-
+prof = random_profession(coll)
 @app.route("/occupations")
 def display_template():
-    return render_template('temp1.html', collection = coll, rand = random_profession(coll))
+    return render_template('temp1.html', collection = coll, rand = prof, link = coll[prof][1] )
 
 if __name__ == "__main__":
     app.debug = True

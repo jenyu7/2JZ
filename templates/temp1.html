@@ -7,11 +7,12 @@
   <body>
     <center>
       <h1> <font color = "red">{{ rand }} </font></h1>
+      <h2> <a href=&quot;{{ link }}&quot;> Get started here! </a> </h2>
     <table>
       {% for i in collection %}
       <tr> 
 	<th> {{ i }} </th> 
-	<td> {{ collection[i] }} </td> 
+	<td> {{ collection[i][0] }} </td> 
       </tr> 
       {% endfor %}
     </table>
