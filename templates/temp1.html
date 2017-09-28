@@ -8,14 +8,17 @@
     <center>
       <h1> <font color = "red">{{ rand }} </font></h1>
       <h2> <a href={{ link }}> Get started here! </a> </h2>
-    <table>
-      {% for i in collection %}
-      <tr> 
-	<th> {{ i }} </th> 
-	<td> {{ collection[i][0] }} </td> 
-      </tr> 
-      {% endfor %}
-    </table>
+      <table>
+	{% for i in collection %}
+	{% if i == rand %} 
+	{% set bg = "#adffae"  %}
+	{% endif %}
+	<tr> 
+	  <th> {{ i }} </th> 
+	  <td> {{ collection[i][0] }} </td> 
+	</tr> 
+	{% endfor %}
+      </table>
     </center>
   </body> 
 </html> 
