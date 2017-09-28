@@ -1,5 +1,13 @@
+'''
+Helen Ye, Jen Yu, Jennifer Zhang
+SoftDev1 pd7
+HW05 -- Jinja Tuning
+2017-09-27
+'''
+
 from flask import Flask, render_template
 import random
+
 app = Flask(__name__)
 
 def read_occupations():
@@ -27,19 +35,27 @@ def read_occupations():
 
 
 def random_profession(professions):
-  num = random.randint(1,998)
-  for element in professions:
-    #We keep subtracting the percentages until num becomes a negative number: we know that it falls within the range of the specific occupation when its negative
-    num -= professions[element][0] * 10
-    if num < 0:
-      return element
-  #returns -1 if something went wrong
-  return -1;
+    num = random.randint(1,998)
+    for element in professions:
+      #We keep subtracting the percentages until num becomes a negative number: we know that it falls within the range of the specific occupation when its negative
+        num -= professions[element][0] * 10
+        if num < 0:
+            return element
+    #returns -1 if something went wrong
+    return -1;
 
+#Add a landing page
+@app.route("/")
+def home():
+    return '<a href="/occupations">Occupations?</a>'
+
+#Process occupations csv
 coll = read_occupations()
-prof = random_profession(coll)
 @app.route("/occupations")
 def display_template():
+    # Generate a random profession
+    prof = random_profession(coll)
+    # Render the page with the random profession
     return render_template('temp1.html', collection = coll, rand = prof, link = coll[prof][1] )
 
 if __name__ == "__main__":
